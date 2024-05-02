@@ -17,11 +17,11 @@ int main() {
 
   ExponentGen gen;
   TaylorSeries<double, ExponentGen> series(gen, 0, Interval<double>(1, 3));
-  for (std::size_t i = 0; i < 20; ++i) {
+  for (std::size_t i = 0; i < 100; ++i) {
     series.DoIter();
   }
 
   std::cout << std::setprecision(20) << series.GetResult() << '\n';
-  // result (2.7182818284590410939 20.085536921517700648)
+  // result (2.7182818284590410939 20.085536923187973457)
   // actual (2.7182818284590452353 20.085536923187667740)
 }
