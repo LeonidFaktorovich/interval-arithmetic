@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(sinus)
+project(exponent)
 
 file(GLOB_RECURSE SOURCES *.cpp)
 
