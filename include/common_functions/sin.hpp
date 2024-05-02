@@ -7,5 +7,4 @@
 
 template <typename T>
 Interval<T> Sin(Interval<T> x) {
-  if ()
 }

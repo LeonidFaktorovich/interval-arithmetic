@@ -4,8 +4,19 @@ project(intervals)
 
 set(CMAKE_CXX_STANDARD 20)
 
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+set(SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(INCLUDES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(main ${SOURCE_FILES})
+file(GLOB_RECURSE SOURCES ${SOURCES_DIR}/*.cpp)
 
-target_include_directories(main PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+file(GLOB_RECURSE HEADERS ${INCLUDES_DIR}/*.hpp)
+
+include_directories(${INCLUDES_DIR})
+
+add_executable(main ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
+
+target_include_directories(main PRIVATE ${INCLUDES_DIR})
+
+add_subdirectory(examples/io)
+add_subdirectory(examples/exponent)

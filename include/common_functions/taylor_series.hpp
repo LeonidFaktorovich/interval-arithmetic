@@ -19,15 +19,26 @@ class TaylorSeries final {
   TaylorSeries(Gen generator, T a, Interval<T> x) : generator_(std::move(generator)), a_(a), x_(x) {
   }
 
-  void DoIter() {
+  Interval<T> DoIter() {
+    generator_.next();
+    
+    Interval<T> i(calc_ * generator_.get());
+    result_ += i;
+    calc_ *= (x_ - a_) / ++next_iter_;
+
+    return i;
+  }
+
+  Interval<T> GetResult() const {
+    return result_;
   }
 
  private:
   Gen generator_;
-  T a_;
-  Interval<T> x_;
+  const T a_;
+  const Interval<T> x_;
+  Interval<T> calc_{1};
 
   std::size_t next_iter_{0};
-  T factorial_{1};
   Interval<T> result_{0};
 };

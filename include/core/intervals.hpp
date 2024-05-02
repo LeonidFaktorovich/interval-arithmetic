@@ -7,7 +7,7 @@
 template <typename T>
 class Interval {
   friend std::ostream& operator<<(std::ostream& ostream, Interval<T> interval) {
-    ostream << interval.left_bound() << ' ' << interval.right_bound();
+    ostream << '(' << interval.left_bound() << ' ' << interval.right_bound() << ')';
     return ostream;
   }
   friend std::istream& operator>>(std::istream& istream, Interval<T>& interval) {
@@ -41,9 +41,9 @@ class Interval {
     copy -= rhs;
     return copy;
   }
-  constexpr Interval& operator*(const Interval& rhs) {
+  constexpr Interval& operator*=(const Interval& rhs) {
     left_ = std::min({DownMultiply(left_, rhs.left_), DownMultiply(left_, rhs.right_), DownMultiply(right_, rhs.left_), DownMultiply(right_, rhs.right_)});
-    right_ = std::min({UpperMultiply(left_, rhs.left_), UpperMultiply(left_, rhs.right_), UpperMultiply(right_, rhs.left_), UpperMultiply(right_, rhs.right_)});
+    right_ = std::max({UpperMultiply(left_, rhs.left_), UpperMultiply(left_, rhs.right_), UpperMultiply(right_, rhs.left_), UpperMultiply(right_, rhs.right_)});
     return *this;
   }
   constexpr Interval operator*(const Interval& rhs) const {
@@ -53,7 +53,7 @@ class Interval {
   }
   constexpr Interval& operator/=(const Interval& rhs) {
     left_ = std::min({DownDivide(left_, rhs.left_), DownDivide(left_, rhs.right_), DownDivide(right_, rhs.left_), DownDivide(right_, rhs.right_)});
-    right_ = std::min({UpperDivide(left_, rhs.left_), UpperDivide(left_, rhs.right_), UpperDivide(right_, rhs.left_), UpperDivide(right_, rhs.right_)});
+    right_ = std::max({UpperDivide(left_, rhs.left_), UpperDivide(left_, rhs.right_), UpperDivide(right_, rhs.left_), UpperDivide(right_, rhs.right_)});
     return *this;
   }
   constexpr Interval operator/(const Interval& rhs) const {
@@ -84,7 +84,7 @@ class Interval {
     return *this /= Interval(value);
   }
   constexpr Interval operator/(T value) {
-    return *this / value;
+    return *this / Interval(value);
   }
 
 
