@@ -20,3 +20,4 @@ target_include_directories(main PRIVATE ${INCLUDES_DIR})
 
 add_subdirectory(examples/io)
 add_subdirectory(examples/exponent)
+add_subdirectory(examples/sinus)
