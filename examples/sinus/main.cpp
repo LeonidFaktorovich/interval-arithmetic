@@ -2,8 +2,9 @@
 #include <iostream>
 
 #include <core/intervals.hpp>
-#include <core/round_mode.hpp>
+#include <core/round_mode_scope.hpp>
 #include <common_functions/taylor_series.hpp>
+#include <limits>
 
 class SinusGen {
  public:
@@ -26,8 +27,7 @@ class SinusGen {
 };
 
 int main() {
-  RoundMode mode;
-  mode.SetDownward();
+  RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
 
   SinusGen gen;
   TaylorSeries<double, SinusGen> series(gen, /* pi/2 */ 1.5707963267948966, Interval<double>(1.565, 1.575));

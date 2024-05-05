@@ -4,7 +4,6 @@
 #include <functional>
 
 #include <core/intervals.hpp>
-#include <core/round_mode.hpp>
 
 template<class Gen, typename Result>
 concept Generator = requires(Gen generator)

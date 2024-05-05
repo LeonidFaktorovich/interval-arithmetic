@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include <core/intervals.hpp>
-#include <core/round_mode.hpp>
+#include <core/round_mode_scope.hpp>
 #include <common_functions/taylor_series.hpp>
 
 class ExponentGen {
@@ -12,7 +12,7 @@ class ExponentGen {
 };
 
 int main() {
-  RoundMode mode;
+  RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
   mode.SetDownward();
 
   ExponentGen gen;
