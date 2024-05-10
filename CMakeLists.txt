@@ -1,9 +1,8 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.0)
 
 project(intervals)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frounding-math")
 
 set(SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(INCLUDES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -16,6 +15,11 @@ include_directories(${INCLUDES_DIR})
 
 add_executable(main ${SOURCES})
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
+if(WIN32)
+    target_compile_options(${PROJECT_NAME} PRIVATE /fp:strict)
+else()
+    target_compile_options(${PROJECT_NAME} PRIVATE -frounding-math)
+endif()
 
 target_include_directories(main PRIVATE ${INCLUDES_DIR})
 
