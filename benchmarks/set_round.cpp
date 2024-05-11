@@ -28,8 +28,6 @@ void Nearest(benchmark::State& state) {
 BENCHMARK(Downward);
 BENCHMARK(Nearest);
 
-BENCHMARK_MAIN();
-
 /*
 Run on (8 X 1999.99 MHz CPU s)
 CPU Caches:
