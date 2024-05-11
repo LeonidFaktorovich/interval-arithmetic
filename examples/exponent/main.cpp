@@ -13,7 +13,6 @@ class ExponentGen {
 
 int main() {
   intervals::RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
-  mode.SetDownward();
 
   ExponentGen gen;
   intervals::TaylorSeries<double, ExponentGen> series(gen, 0, intervals::Interval<double>(1, 3));
