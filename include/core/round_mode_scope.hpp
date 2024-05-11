@@ -2,6 +2,8 @@
 
 #include <limits>
 
+namespace intervals {
+
 class RoundModeScope final {
  public:
   explicit RoundModeScope(std::float_round_style mode) noexcept;
@@ -13,3 +15,5 @@ class RoundModeScope final {
  private:
   const int prev_mode_;
 };
+
+}

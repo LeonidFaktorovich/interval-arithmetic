@@ -27,7 +27,7 @@ class SinusGen {
 };
 
 int main() {
-  RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
+  intervals::RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
 
   SinusGen gen;
   intervals::TaylorSeries<double, SinusGen> series(gen, /* pi/2 */ 1.5707963267948966, intervals::Interval<double>(1.565, 1.575));

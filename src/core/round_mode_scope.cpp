@@ -1,8 +1,9 @@
 #include <core/round_mode_scope.hpp>
 
 #include <cfenv>
-#include <fenv.h>
 #include <limits>
+
+namespace intervals {
 
 RoundModeScope::RoundModeScope(std::float_round_style mode) noexcept : prev_mode_(std::fegetround()) {
   switch (mode) {
@@ -28,4 +29,6 @@ void RoundModeScope::SetDownward() noexcept {
 
 void RoundModeScope::SetUpward() noexcept {
   std::fesetround(FE_UPWARD);
+}
+
 }

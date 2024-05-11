@@ -12,7 +12,7 @@ class ExponentGen {
 };
 
 int main() {
-  RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
+  intervals::RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
   mode.SetDownward();
 
   ExponentGen gen;
