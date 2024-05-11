@@ -6,7 +6,7 @@
 
 template <typename T>
 class Interval {
-  friend std::ostream& operator<<(std::ostream& ostream, Interval<T> interval) {
+  friend std::ostream& operator<<(std::ostream& ostream, const Interval<T>& interval) {
     ostream << '(' << interval.left_bound() << ' ' << interval.right_bound() << ')';
     return ostream;
   }
@@ -19,6 +19,12 @@ class Interval {
   constexpr Interval(T left, T right) : left_(left), right_(right) {
   }
   constexpr explicit Interval(T left) : Interval(left, left) {
+  }
+
+  constexpr Interval& operator-() {
+    left_ = -left_;
+    right_ = -right_;
+    return *this;
   }
 
   constexpr Interval& operator+=(const Interval& rhs) {
@@ -114,3 +120,23 @@ class Interval {
   T left_;
   T right_;
 };
+
+template <typename T>
+constexpr Interval<T> operator+(T lhs, const Interval<T>& rhs) {
+  return rhs + Interval<T>(lhs);
+}
+
+template <typename T>
+constexpr Interval<T> operator-(T lhs, const Interval<T>& rhs) {
+  return Interval<T>(lhs)  - rhs;
+}
+
+template <typename T>
+constexpr Interval<T> operator*(T lhs, const Interval<T>& rhs) {
+  return Interval<T>(lhs) * rhs;
+}
+
+template <typename T>
+constexpr Interval<T> operator/(T lhs, const Interval<T>& rhs) {
+  return Interval<T>(lhs) / rhs;
+}
