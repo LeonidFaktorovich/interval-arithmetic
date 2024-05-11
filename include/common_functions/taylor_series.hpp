@@ -5,6 +5,8 @@
 
 #include <core/intervals.hpp>
 
+namespace intervals {
+
 template<class Gen, typename Result>
 concept Generator = requires(Gen generator)
 { 
@@ -41,3 +43,5 @@ class TaylorSeries final {
   std::size_t next_iter_{0};
   Interval<T> result_{0};
 };
+
+}

@@ -4,6 +4,8 @@
 #include <ostream>
 #include <istream>
 
+namespace intervals {
+
 template <typename T>
 class Interval {
   friend std::ostream& operator<<(std::ostream& ostream, const Interval<T>& interval) {
@@ -139,4 +141,6 @@ constexpr Interval<T> operator*(T lhs, const Interval<T>& rhs) {
 template <typename T>
 constexpr Interval<T> operator/(T lhs, const Interval<T>& rhs) {
   return Interval<T>(lhs) / rhs;
+}
+
 }

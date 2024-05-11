@@ -30,7 +30,7 @@ int main() {
   RoundModeScope mode(std::float_round_style::round_toward_neg_infinity);
 
   SinusGen gen;
-  TaylorSeries<double, SinusGen> series(gen, /* pi/2 */ 1.5707963267948966, Interval<double>(1.565, 1.575));
+  intervals::TaylorSeries<double, SinusGen> series(gen, /* pi/2 */ 1.5707963267948966, intervals::Interval<double>(1.565, 1.575));
   for (std::size_t i = 0; i < 100; ++i) {
     series.DoIter();
   }

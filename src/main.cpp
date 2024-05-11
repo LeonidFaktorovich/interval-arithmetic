@@ -3,7 +3,7 @@
 #include <common_functions/abs.hpp>
 
 int main() {
-    Interval<double> interval(0);
+    intervals::Interval<double> interval(0);
     std::cin >> interval;
     std::cout << "Result interval: " << Abs(interval);
 }

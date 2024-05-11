@@ -16,7 +16,7 @@ int main() {
   mode.SetDownward();
 
   ExponentGen gen;
-  TaylorSeries<double, ExponentGen> series(gen, 0, Interval<double>(1, 3));
+  intervals::TaylorSeries<double, ExponentGen> series(gen, 0, intervals::Interval<double>(1, 3));
   for (std::size_t i = 0; i < 100; ++i) {
     series.DoIter();
   }
