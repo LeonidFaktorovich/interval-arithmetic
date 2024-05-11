@@ -8,4 +8,4 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(io ${SOURCES})
 
-target_link_libraries(io intervals)
+target_link_libraries(io intervals-arithmetic)
