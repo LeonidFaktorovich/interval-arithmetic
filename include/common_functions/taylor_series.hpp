@@ -8,13 +8,13 @@
 namespace intervals {
 
 template<class Gen, typename Result>
-concept Generator = requires(Gen generator)
+concept DerivativeGenerator = requires(Gen generator)
 { 
     { generator.next() } -> std::convertible_to<void>;
     { generator.get() } -> std::convertible_to<Result>;
 };
  
-template <typename T, Generator<T> Gen>
+template <typename T, DerivativeGenerator<T> Gen>
 class TaylorSeries final {
  public:
   TaylorSeries(Gen generator, T a, Interval<T> x) : generator_(std::move(generator)), a_(a), x_(x) {
